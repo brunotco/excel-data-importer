@@ -9,8 +9,8 @@ import { ImportComponent } from './import/import.component';
 import { ReportComponent } from './report/report.component';
 
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatLegacyButtonModule as MatButtonModule } from '@angular/material/legacy-button';
-import { MatLegacyTableModule as MatTableModule } from '@angular/material/legacy-table';
+import { MatButtonModule } from '@angular/material/button';
+import { MatTableModule } from '@angular/material/table';
 
 @NgModule({
   declarations: [
