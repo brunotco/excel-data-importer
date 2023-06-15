@@ -28,7 +28,7 @@ public class UserController : ControllerBase
     public async Task<ActionResult<IEnumerable<User>>> GetActive()
     {
         //var data = await _context.User.ToListAsync();
-        return _context.User.Where((dbPlanning) => dbPlanning.Active.Equals(true)).ToList();
+        return _context.User.Where((dbUser) => dbUser.Active.Equals(true)).ToList();
     }
 
     //GET: api/User/5
@@ -47,7 +47,7 @@ public class UserController : ControllerBase
 
     // PUT: api/User/5
     [HttpPut("{id}")]
-    public async Task<IActionResult> PutPlanning(int id, User user)
+    public async Task<IActionResult> PutUser(int id, User user)
     {
         if (id != user.Id)
         {
@@ -146,7 +146,7 @@ public class UserController : ControllerBase
     public async Task<ActionResult<User>> PostUser(User user)
     {
         user = Utils.ValidateUser(user);
-        User existingUser = _context.User.Where((dbPlanning) => dbPlanning.Username.Equals(user.Username)).FirstOrDefault();
+        User existingUser = _context.User.Where((dbUser) => dbUser.Username.Equals(user.Username)).FirstOrDefault();
         if (existingUser == null)
         {
             _context.User.Add(user);
@@ -155,9 +155,9 @@ public class UserController : ControllerBase
         }
         else
         {
-            //return BadRequest(existingUser);
-            await this.ActiveUser((int)existingUser.Id);
-            return AcceptedAtAction("GetUser", existingUser);
+            return BadRequest(existingUser);
+            //await this.ActiveUser((int)existingUser.Id);
+            //return AcceptedAtAction("GetUser", existingUser);
         }
 
     }
