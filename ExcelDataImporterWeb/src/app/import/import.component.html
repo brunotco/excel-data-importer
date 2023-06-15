@@ -1,1 +1,38 @@
-<p>Import</p>
+
+<mat-card class="main-card">
+    <div *ngIf="(!fileName && finishedImport); then chooser else uploader"></div>
+    <ng-template #chooser>
+        <div fxLayout="column" fxLayoutGap="10" fxLayoutAlign="center center">
+            <input hidden #fileInput type="file" (change)="fileLoad($event)" multiple="false" accept="{{ formats }}" />
+            <button mat-raised-button color="primary" (click)="fileInput.click()">Choose File</button>
+        </div>
+    </ng-template>
+    <ng-template #uploader>
+        <div fxLayout="column" fxLayoutGap="5" fxLayoutAlign="center center">
+            <span><b>{{ fileName }}</b></span>
+            <mat-divider *ngIf="fileName" class="separator"></mat-divider>
+            <button *ngIf="fileName" mat-raised-button color="accent" (click)="upload()">Start Upload</button>
+            <button *ngIf="fileName || !finishedImport" mat-raised-button color="warn" (click)="clear()">Clear File</button>
+            <div *ngIf="toImport() > 0">
+                <h3>Rows in file: {{ toImport() }}</h3>
+            </div>
+            <div *ngIf="importedRows.length > 0">
+                <mat-divider class="separator-mini"></mat-divider>
+                <h3>Rows imported: {{ importedRows.length }}</h3>
+            </div>
+            <div *ngIf="skippedRows.size > 0">
+                <mat-divider class="separator-mini"></mat-divider>
+                <h3>Rows skipped: {{ skippedRows.size }}</h3>
+                <h5>Detailed problems:</h5>
+                <mat-list>
+                    <ng-container *ngFor='let problem of skippedRows.entries()'>
+                        <mat-list-item>
+                            <span matListItemTitle>Line {{ problem[0] }}</span>
+                            <span matListItemLine>{{ problem[1] }}</span>
+                        </mat-list-item>
+                    </ng-container>
+                </mat-list>
+            </div>
+        </div>
+    </ng-template>
+</mat-card>
