@@ -4,7 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-// import { FlexLayoutModule } from '@angular/flex-layout';
+import { FlexLayoutModule } from '@angular/flex-layout';
 import { ImportComponent } from './import/import.component';
 import { ReportComponent } from './report/report.component';
 
@@ -22,7 +22,7 @@ import { MatTableModule } from '@angular/material/table';
     BrowserModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    // FlexLayoutModule,
+    FlexLayoutModule,
     MatToolbarModule,
     MatButtonModule,
     MatTableModule

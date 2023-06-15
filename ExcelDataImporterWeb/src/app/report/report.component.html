@@ -5,10 +5,10 @@
     <mat-label>Filter</mat-label>
     <input matInput (keyup)="applyFilter($event)" placeholder="Ex. GDO" #input>
 </mat-form-field> -->
-<!-- <div fxLayout="row" fxLayoutAlign="space-between center"> -->
+<div fxLayout="row" fxLayoutAlign="space-between center">
     <button mat-raised-button color="primary" (click)="export()">Export data</button>
     <button mat-raised-button color="warn" (click)="allInactive()">Inactive all</button>
-<!-- </div> -->
+</div>
 <button mat-raised-button color="accent" (click)="allActive()">Active all</button>
 <div class="mat-elevation-z8" *ngIf="userData.length">
   <table mat-table [dataSource]="tableData" matSort>
